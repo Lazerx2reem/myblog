@@ -1,7 +1,23 @@
+import fs from "fs";
+import path from "path";
 import Link from "next/link";
-import posts from "../data/posts";
+import matter from "gray-matter";
+
+const postsDirectory = path.join(process.cwd(), "posts");
 
 export default function Home() {
+  const filenames = fs.readdirSync(postsDirectory);
+  const posts = filenames.map((name) => {
+    const fullPath = path.join(postsDirectory, name);
+    const fileContents = fs.readFileSync(fullPath, "utf8");
+    const { data } = matter(fileContents);
+
+    return {
+      slug: name.replace(/\.md$/, ""),
+      ...data,
+    };
+  });
+
   return (
     <div className="space-y-6">
       <h1 className="text-4xl font-bold mb-8 text-center">My Blog</h1>

@@ -1,25 +1,25 @@
-import ReactMarkdown from "react-markdown";
-import posts from "../../../data/posts";
-import Link from "next/link";
 import fs from "fs";
 import path from "path";
+import ReactMarkdown from "react-markdown";
+import Link from "next/link";
+import matter from "gray-matter";
+
+const postsDirectory = path.join(process.cwd(), "posts");
 
 export async function generateStaticParams() {
-  return posts.map((post) => ({
-    slug: post.slug,
+  const filenames = fs.readdirSync(postsDirectory);
+  return filenames.map((name) => ({
+    slug: name.replace(/\.md$/, ""),
   }));
 }
 
-export default async function PostPage({ params }) {
+export default function PostPage({ params }) {
   const { slug } = params;
-  const filePath = path.join(process.cwd(), "posts", `${slug}.md`);
-  let content = "";
 
-  try {
-    content = fs.readFileSync(filePath, "utf8");
-  } catch {
-    content = "# Post not found";
-  }
+  const fullPath = path.join(postsDirectory, `${slug}.md`);
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+
+  const { content, data } = matter(fileContents); // data = frontmatter
 
   return (
     <div>
@@ -27,6 +27,9 @@ export default async function PostPage({ params }) {
         ← Back to Home
       </Link>
       <div className="prose lg:prose-xl bg-white p-6 rounded-lg shadow">
+        <h1>{data.title}</h1>
+        <p className="text-gray-500 mb-4">{data.date}</p>
+        <p className="mb-4">{data.description}</p>
         <ReactMarkdown>{content}</ReactMarkdown>
       </div>
     </div>

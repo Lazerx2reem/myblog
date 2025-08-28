@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 text-center py-6 mt-10">
-      &copy; 2025 My Blog. All rights reserved.
+    <footer className="bg-gradient-to-r from-pink-400 to-purple-500 dark:from-gray-900 dark:to-gray-800 text-white text-center py-6 mt-auto">
+      &copy; 2025 Arsh Gupta Blog. All rights reserved.
     </footer>
   );
 }

@@ -18,23 +18,27 @@ export default function Home() {
     };
   });
 
-  // Sort posts by date descending
+  // Sort by date descending
   posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
   return (
-    <div className="space-y-6">
-      <h1 className="text-4xl font-bold mb-8 text-center">My Blog</h1>
-      {posts.map((post) => (
+    <div className="space-y-8">
+      <h1 className="text-5xl font-extrabold mb-10 text-center text-purple-700 dark:text-purple-400">
+        Arsh Gupta Blog
+      </h1>
+      {posts.map((post, index) => (
         <div
           key={post.slug}
-          className="p-6 border rounded-lg shadow hover:shadow-lg transition duration-300 bg-white dark:bg-gray-800"
+          className={`p-6 rounded-xl shadow-lg transform transition-transform hover:scale-105 bg-gradient-to-r from-pink-100 to-purple-100 dark:from-gray-800 dark:to-gray-700`}
         >
-          <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
-          <p className="text-gray-500 dark:text-gray-400 mb-3">{post.date}</p>
-          <p className="mb-3 text-gray-700 dark:text-gray-300">{post.description}</p>
+          <h2 className="text-2xl font-bold mb-2 text-purple-800 dark:text-pink-200">
+            {post.title}
+          </h2>
+          <p className="text-gray-500 dark:text-gray-300 mb-3">{post.date}</p>
+          <p className="mb-3 text-gray-700 dark:text-gray-200">{post.description}</p>
           <Link
             href={`/posts/${post.slug}`}
-            className="text-blue-600 dark:text-blue-400 font-medium hover:underline"
+            className="text-white bg-purple-600 dark:bg-pink-500 px-4 py-2 rounded-lg font-semibold hover:bg-purple-700 dark:hover:bg-pink-600 transition-colors"
           >
             Read More →
           </Link>

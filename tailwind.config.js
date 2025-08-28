@@ -1,12 +1,15 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./app/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}"
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  darkMode: "class", // enable dark mode via class
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["var(--font-inter)", "sans-serif"],
+        serif: ["var(--font-merriweather)", "serif"],
+      },
+    },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [],
 };

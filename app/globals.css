@@ -24,3 +24,16 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+/* Ensure normal text uses Inter */
+body {
+  font-family: var(--font-inter), sans-serif;
+  line-height: 1.7;
+}
+
+/* Markdown headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-merriweather), serif;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}

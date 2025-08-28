@@ -13,8 +13,10 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function PostPage({ params }) {
-  const { slug } = params;
+export default async function PostPage({ params }) {
+  // ✅ await params before using it
+  const { slug } = await params;
+
   const fullPath = path.join(postsDirectory, `${slug}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { content, data } = matter(fileContents);
@@ -28,7 +30,9 @@ export default function PostPage({ params }) {
         ← Back to Home
       </Link>
       <div className="prose lg:prose-xl bg-gradient-to-r from-yellow-50 to-pink-50 dark:from-gray-800 dark:to-gray-700 p-8 rounded-xl shadow-lg">
-        <h1 className="text-4xl font-bold text-purple-700 dark:text-pink-300">{data.title}</h1>
+        <h1 className="text-4xl font-bold text-purple-700 dark:text-pink-300">
+          {data.title}
+        </h1>
         <p className="text-gray-500 dark:text-gray-300 mb-4">{data.date}</p>
         <p className="mb-4">{data.description}</p>
         <ReactMarkdown>{content}</ReactMarkdown>

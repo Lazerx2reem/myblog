@@ -26,6 +26,7 @@ export default function Home() {
       <h1 className="text-5xl font-extrabold mb-10 text-center text-purple-700 dark:text-purple-400">
         Arsh Gupta Blog
       </h1>
+      <p>My name is Arsh Gupta, I am a junior studying Computer Science. Im super excited to take AI-285 this semester! I love hiking, swimming and spending time in nature. You'll see me a lot at the arboretum! Im here to learn as much as I can and I cant wait to learn more in this class!</p>
       {posts.map((post, index) => (
         <div
           key={post.slug}
